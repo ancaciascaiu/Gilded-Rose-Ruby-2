@@ -15,21 +15,16 @@ class GildedRose
         end
       end
     else
-      if @quality < 50
-        @quality = @quality + 1
+        increase_quality
         if @name == "Backstage passes to a TAFKAL80ETC concert"
           if @days_remaining < 11
-            if @quality < 50
-              @quality = @quality + 1
-            end
+            increase_quality
           end
+
           if @days_remaining < 6
-            if @quality < 50
-              @quality = @quality + 1
-            end
+            increase_quality
           end
         end
-      end
     end
     if @name != "Sulfuras, Hand of Ragnaros"
       @days_remaining = @days_remaining - 1
@@ -46,10 +41,12 @@ class GildedRose
           @quality = @quality - @quality
         end
       else
-        if @quality < 50
-          @quality = @quality + 1
-        end
+        increase_quality
       end
     end
+  end
+
+  def increase_quality
+    @quality += 1 if @quality < 50
   end
 end
