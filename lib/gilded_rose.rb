@@ -20,18 +20,12 @@ class GildedRose
         @quality = 0 
       else
         increase_quality
-
-        if @days_remaining < 10
-          increase_quality
-        end
-
-        if @days_remaining < 5
-          increase_quality
-        end
+        increase_quality if @days_remaining < 10
+        increase_quality if @days_remaining < 5
       end
-    else # normal item
+    else
       decrease_quality
-      decrease_quality if @days_remaining < 0
+      decrease_quality if @name == "Conjured Mana Cake"
     end
   end
 
@@ -41,7 +35,11 @@ class GildedRose
 
   def decrease_quality
     if @quality > 0
-      @quality -= 1
+      if @days_remaining < 0 
+        @quality -= 2
+      else
+        @quality -= 1
+      end
     end
   end
 end
