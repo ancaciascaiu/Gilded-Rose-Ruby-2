@@ -8,6 +8,8 @@ class GildedRose
   end
 
   def tick
+    return if @name == "Sulfuras, Hand of Ragnaros"
+
     if @name != "Aged Brie" and @name != "Backstage passes to a TAFKAL80ETC concert"
       decrease_quality
     else
@@ -22,9 +24,9 @@ class GildedRose
         end
       end
     end
-    if @name != "Sulfuras, Hand of Ragnaros"
-      @days_remaining = @days_remaining - 1
-    end
+
+    @days_remaining = @days_remaining - 1
+
     if @days_remaining < 0
       if @name != "Aged Brie"
         if @name != "Backstage passes to a TAFKAL80ETC concert"
@@ -43,7 +45,7 @@ class GildedRose
   end
 
   def decrease_quality
-    if @quality > 0 && @name != "Sulfuras, Hand of Ragnaros"
+    if @quality > 0
       @quality -= 1
     end
   end
